@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My Chat</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://kit.fontawesome.com/3f2ba3881e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="login-page">
+    <div class="overlay-container">
+      <img src="img/chatting.jpg" alt="" id="landing-img">
+      <div class="overlay"></div>
+    </div>  
+      <div class="user-login-area">
+        <h1>Simple Chat</h1>
+        <form id="user-login-form">
+          <input type="text" placeholder="username" required autofocus id="username" maxlength="14">
+          <input type="submit" value="Login" id="login-btn">
+        </form>
+      </div>
+    </div>
+      <main>
+    <div class="container">
+      <div class="online-users">
+        <h3>Online Users</h3>
+        <ul id="users">
+          <li>Gary Simon <i class="far fa-dot-circle"></i></li>
+        </ul>
+      </div>
+      <div class="chat-wrapper">
+            <ul id="chat-messages">
+              
+            </ul>
+        
+          <form action="" id="message-area">   
+            <textarea type="text" id="message-text" placeholder="Message" required></textarea>
+            <input type="submit" class="submit-btn" value="Send">
+          </form>
+      </div>
+    </div>
+  </main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8e44ad;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a851ce;
+}
+
+::-webkit-scrollbar-track {
+  background: #2c3e50;
+  border-radius: 5px;
+}
+
+main {
+  width: 100%;
+  margin: auto;
+  display: none;
+}
+
+.overlay-container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.53);
+  z-index: -1;
+}
+
+#landing-img {
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -2;
+}
+
+.user-login-area {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.user-login-area h1 {
+  color: #e6e6e6;
+}
+
+.user-login-area input[type="text"] {
+  padding: .8em;
+  width: 290px;
+  margin-top: 3em;
+  display: block;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: #1c2936;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.user-login-area input[type="text"]::-webkit-input-placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="text"]:-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="text"]::-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="text"]::placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="submit"] {
+  padding: 0.8em 36px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  background: #8e44ad;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  margin: 0.8em auto;
+}
+
+.user-login-area input[type="submit"]:hover {
+  background: #a851ce;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+}
+
+.online-users {
+  width: 28%;
+  background: #2c3e50;
+  padding: 2em 1em;
+}
+
+.online-users h3 {
+  text-align: center;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.online-users ul {
+  list-style: none;
+  color: #fff;
+  margin-top: 2em;
+}
+
+.online-users ul li {
+  font-weight: 600;
+  width: 100%;
+  background: #1c2936;
+  padding: 15px;
+  position: relative;
+}
+
+.online-users ul li i {
+  position: absolute;
+  right: 15px;
+  color: #2ecc71;
+}
+
+.online-users ul li i:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #2ecc71;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  top: -3px;
+  -webkit-animation: pulse 1.5s linear infinite;
+          animation: pulse 1.5s linear infinite;
+}
+
+.chat-wrapper {
+  background: #1f3246;
+  width: 80%;
+}
+
+#chat-messages {
+  list-style: none;
+  height: calc(100% - 20vh - 6.6em - 20px);
+  color: #fff;
+  margin: 2em;
+  overflow: auto;
+}
+
+#chat-messages .single-message {
+  background: #8e44ad;
+  font-size: 15px;
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 6px;
+}
+
+#message-area {
+  margin: 2em;
+  position: relative;
+}
+
+#message-area textarea {
+  width: 100%;
+  height: 20vh;
+  font-size: 15px;
+  padding: 0.8em;
+  outline: none;
+  color: #fff;
+  background: #2c3e50;
+  border: none;
+  border-radius: 3px;
+  display: block;
+  resize: none;
+}
+
+#message-area textarea::-webkit-input-placeholder {
+  color: #c9c9c9;
+}
+
+#message-area textarea:-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+#message-area textarea::-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+#message-area textarea::placeholder {
+  color: #c9c9c9;
+}
+
+#message-area input[type="submit"] {
+  color: #fff;
+  background: #8e44ad;
+  border: none;
+  outline: none;
+  padding: 10px 36px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 1em;
+  position: absolute;
+  right: 0;
+}
+
+#message-area input[type="submit"]:hover {
+  background: #a851ce;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=main.css.map */
