@@ -24,6 +24,7 @@ main {
     margin: auto;
     display: none;
 }
+
 .overlay-container {
     position: relative;
 }
@@ -102,7 +103,7 @@ main {
         list-style: none;
         color:#fff;
         margin-top: 2em;    
-        li {
+        .user {
             font-weight: 600;
             width:100%;
             background: rgb(28, 41, 54);
@@ -129,6 +130,12 @@ main {
     }
 
 }
+.log {
+    color:#a851ce;
+    font-size: 14px;
+    margin: 5px;
+    text-align: center;
+  }
 .chat-wrapper {
     background:#1f3246;
     width: 80%;
@@ -143,10 +150,20 @@ main {
         background: #8e44ad;
         font-size:15px;
         display: block;
+        padding-right:8px;
         width: fit-content;
-        padding:10px;
         border-radius: 3px;
         margin-top:6px;
+        .username {
+            background: #2c3e50;
+            color:rgb(241, 241, 241);
+            display: inline-block;
+            padding:10px;
+            margin-right:8px;
+            border-radius: 3px 0 0 3px;
+            width:fit-content;
+            font-weight:600;
+        }
     }
 }
 #message-area {

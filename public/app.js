@@ -1,68 +1,52 @@
-$(document).ready(function() {
-  // Variables
-  var $window = $(window);
-  var $username = $("#username");
-  var $chatMessages = $("#chat-messages");
-  var $messageInput = $("#message-text");
-  var $messageArea = $("#message-area");
-  var $chatPage = $("main");
-  var $loginPage = $(".login-page");
-  var $userLoginForm = $("#user-login-form");
-  // Username Settings
-  var username;
-  var connected = false;
-  var typing = false;
-  var lastTypingTime;
-  var $currentInput = $username.focus();
+$(function() {
   var socket = io();
+  var $message_form = $("#message-area");
+  var $message_input = $("#message-text");
+  var $chat_messages = $("#chat-messages");
+  var username;
+  var $userForm = $("#user-login-form");
+  var $userLoginPage = $(".login-page");
+  var $mainChat = $("main");
+  var $users = $("#users");
 
-  // Add users
-  const addUsers = data => {
-    var message = "";
-    if (data.numbers === 1) {
-      message += "1 user online";
-    } else {
-      message += `${data.NumUsers} users online`;
-    }
-  };
-  // Setting username
-
-  const setUsername = () => {
-    username = $username.val().trim();
+  // User Login
+  $userForm.submit(function(e) {
+    e.preventDefault();
+    username = $("#username")
+      .val()
+      .trim();
     if (username) {
-      $loginPage.fadeOut();
-      $loginPage.off("click");
-      $chatPage.show();
-      socket.emit("add user", username);
-    }
-  };
-  $userLoginForm.submit(function(e) {
-    e.preventDefault();
-    setUsername();
+      $userLoginPage.fadeOut();
+      $mainChat.fadeIn();
+      socket.emit("new user", username);
+      $userForm.val("");
+    } else return false;
   });
-  $messageArea.submit(function(e) {
-    e.preventDefault();
-    socket.emit("chat message", $messageInput.val());
-    $messageInput.val("");
+  // Message Submit
+  $message_form.submit(function(e) {
+    e.preventDefault(); // prevents page reloading
+    socket.emit("chat message", {
+      message: $message_input.val(),
+      username: username
+    });
+    $message_input.val("");
+    username.val("");
     return false;
   });
-  socket.on("chat message", function(msg) {
-    $chatMessages.append($("<li class='single-message'></li>").text(msg));
+  socket.on("chat message", function(data) {
+    $chat_messages.append(
+      `<li class='single-message'><span class='username'>${data.username}</span>${data.message}</li>`
+    );
   });
-  $window.keydown(function(event) {
-    // Auto-focus the current input when a key is typed
-    if (!(event.ctrlKey || event.metaKey || event.altKey)) {
-      $currentInput.focus();
-    }
-    // When the client hits ENTER on their keyboard
-    if (event.which === 13) {
-      if (username) {
-        sendMessage();
-        socket.emit("stop typing");
-        typing = false;
-      } else {
-        setUsername();
-      }
-    }
+
+  socket.on("user joined", data => {
+    if (data.username !== "") {
+      $chat_messages.append(`<li class='log'>${data.username} joined</li>`);
+    } else return false;
+  });
+  socket.on("user left", data => {
+    if (data.username !== undefined) {
+      $chat_messages.append(`<li class='log'>${data.username} left</li>`);
+    } else return false;
   });
 });

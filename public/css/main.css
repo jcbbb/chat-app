@@ -147,7 +147,7 @@ main {
   margin-top: 2em;
 }
 
-.online-users ul li {
+.online-users ul .user {
   font-weight: 600;
   width: 100%;
   background: #1c2936;
@@ -155,13 +155,13 @@ main {
   position: relative;
 }
 
-.online-users ul li i {
+.online-users ul .user i {
   position: absolute;
   right: 15px;
   color: #2ecc71;
 }
 
-.online-users ul li i:after {
+.online-users ul .user i:after {
   content: '';
   display: block;
   position: absolute;
@@ -173,6 +173,13 @@ main {
   top: -3px;
   -webkit-animation: pulse 1.5s linear infinite;
           animation: pulse 1.5s linear infinite;
+}
+
+.log {
+  color: #a851ce;
+  font-size: 14px;
+  margin: 5px;
+  text-align: center;
 }
 
 .chat-wrapper {
@@ -192,12 +199,25 @@ main {
   background: #8e44ad;
   font-size: 15px;
   display: block;
+  padding-right: 8px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 10px;
   border-radius: 3px;
   margin-top: 6px;
+}
+
+#chat-messages .single-message .username {
+  background: #2c3e50;
+  color: #f1f1f1;
+  display: inline-block;
+  padding: 10px;
+  margin-right: 8px;
+  border-radius: 3px 0 0 3px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: 600;
 }
 
 #message-area {
