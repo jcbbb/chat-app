@@ -131,6 +131,8 @@ main {
   width: 28%;
   background: #2c3e50;
   padding: 2em 1em;
+  height: 100vh;
+  overflow: auto;
 }
 
 .online-users h3 {
@@ -153,6 +155,12 @@ main {
   background: #1c2936;
   padding: 15px;
   position: relative;
+  margin-top: 6px;
+  border-radius: 3px;
+}
+
+.online-users ul .user:not(:first) {
+  margin-top: 0;
 }
 
 .online-users ul .user i {
@@ -182,21 +190,40 @@ main {
   text-align: center;
 }
 
+.welcome-message {
+  font-size: 16px;
+  color: #f39c12;
+  font-weight: 500;
+  text-align: center;
+}
+
 .chat-wrapper {
   background: #1f3246;
   width: 80%;
 }
 
+.chat-window {
+  margin: 2em;
+  height: calc(100%  - 7.1em - 26px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chat-window .typing-status {
+  font-size: 13px;
+  font-style: italic;
+  color: #cfcfcf;
+  font-weight: 500;
+  display: block;
+  margin-top: 6px;
+}
+
 #chat-messages {
   list-style: none;
-  height: calc(100% - 20vh - 6.6em - 20px);
   color: #fff;
-  margin: 2em;
-  overflow: auto;
 }
 
 #chat-messages .single-message {
-  background: #8e44ad;
   font-size: 15px;
   display: block;
   padding-right: 8px;
@@ -208,7 +235,6 @@ main {
 }
 
 #chat-messages .single-message .username {
-  background: #2c3e50;
   color: #f1f1f1;
   display: inline-block;
   padding: 10px;
@@ -225,51 +251,84 @@ main {
   position: relative;
 }
 
-#message-area textarea {
+#message-area input[type="text"] {
   width: 100%;
-  height: 20vh;
+  overflow: hidden;
+  padding: 0.8em 68px 0.8em 0.8em;
   font-size: 15px;
-  padding: 0.8em;
   outline: none;
   color: #fff;
   background: #2c3e50;
   border: none;
   border-radius: 3px;
-  display: block;
-  resize: none;
+  display: inline-block;
 }
 
-#message-area textarea::-webkit-input-placeholder {
+#message-area input[type="text"]::-webkit-input-placeholder {
   color: #c9c9c9;
 }
 
-#message-area textarea:-ms-input-placeholder {
+#message-area input[type="text"]:-ms-input-placeholder {
   color: #c9c9c9;
 }
 
-#message-area textarea::-ms-input-placeholder {
+#message-area input[type="text"]::-ms-input-placeholder {
   color: #c9c9c9;
 }
 
-#message-area textarea::placeholder {
+#message-area input[type="text"]::placeholder {
   color: #c9c9c9;
 }
 
-#message-area input[type="submit"] {
+#message-area .submit-btn {
   color: #fff;
   background: #8e44ad;
   border: none;
   outline: none;
-  padding: 10px 36px;
+  padding: 13.2px 24px;
   cursor: pointer;
   border-radius: 3px;
   margin-top: 1em;
+  margin-left: -68px;
   position: absolute;
+  top: -13.3px;
   right: 0;
 }
 
-#message-area input[type="submit"]:hover {
+#message-area .submit-btn:hover {
   background: #a851ce;
+}
+
+.message_color_1 {
+  background: #8e44ad;
+}
+
+.username_color_1 {
+  background: #2c3e50;
+}
+
+.message_color_2 {
+  background: #f39c12;
+}
+
+.username_color_2 {
+  background: #eb4d4b;
+}
+
+.message_color_3 {
+  background: #a55eea;
+}
+
+.username_color_3 {
+  background: #f7b731;
+}
+
+.message_color_4 {
+  background: #f0932b;
+}
+
+.username_color_4 {
+  background: #2d3436;
 }
 
 @-webkit-keyframes pulse {

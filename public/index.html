@@ -24,17 +24,19 @@
       <div class="online-users">
         <h3>Online Users</h3>
         <ul id="users">
-          <li class="user">Gary Simon <i class="far fa-dot-circle"></i></li>
+          <li class="user">Gary Simon<i class="far fa-dot-circle"></i></li>
         </ul>
       </div>
       <div class="chat-wrapper">
+        <div class="chat-window">
             <ul id="chat-messages">
-              <li class="single-message"><span class="username">Gary</span>Hey, how are you, man?</li>
+               
             </ul>
-        
+            <div class="typing-status"></div>
+          </div>
           <form action="" id="message-area">   
-            <textarea type="text" id="message-text" placeholder="Message" required autofocus></textarea>
-            <input type="submit" class="submit-btn" value="Send">
+            <input type="text" id="message-text" placeholder="Message" autofocus></input>
+            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i></button>
           </form>
       </div>
     </div>

@@ -8,9 +8,35 @@ $(function() {
   var $userLoginPage = $(".login-page");
   var $mainChat = $("main");
   var $users = $("#users");
+  var $typingStatus = $(".typing-status");
+  var timer;
+  var min = 1;
+  var max = 5;
+  var random = Math.floor(Math.random() * (max - min)) + min;
+
+  var messageClass;
+  var usernameClass;
+  switch (random) {
+    case 1:
+      messageClass = "message_color_1";
+      usernameClass = "username_color_1";
+      break;
+    case 2:
+      messageClass = "message_color_2";
+      usernameClass = "username_color_2";
+      break;
+    case 3:
+      messageClass = "message_color_3";
+      usernameClass = "username_color_3";
+      break;
+    case 4:
+      messageClass = "message_color_4";
+      usernameClass = "username_color_4";
+      break;
+  }
 
   // User Login
-  $userForm.submit(function(e) {
+  $userForm.one("submit", function(e) {
     e.preventDefault();
     username = $("#username")
       .val()
@@ -19,34 +45,90 @@ $(function() {
       $userLoginPage.fadeOut();
       $mainChat.fadeIn();
       socket.emit("new user", username);
+      $message_input.focus();
       $userForm.val("");
     } else return false;
   });
   // Message Submit
   $message_form.submit(function(e) {
     e.preventDefault(); // prevents page reloading
-    socket.emit("chat message", {
-      message: $message_input.val(),
-      username: username
-    });
-    $message_input.val("");
-    username.val("");
-    return false;
-  });
-  socket.on("chat message", function(data) {
-    $chat_messages.append(
-      `<li class='single-message'><span class='username'>${data.username}</span>${data.message}</li>`
-    );
+    var messageInput = $message_input.val().trim();
+    if (messageInput !== "") {
+      socket.emit("chat message", {
+        message: $message_input.val(),
+        username: username,
+        messageClass: messageClass,
+        usernameClass: usernameClass
+      });
+      $message_input.val("");
+      username.val("");
+    } else {
+      return false;
+    }
   });
 
+  // Displaying the message
+  socket.on("chat message", function(data) {
+    $typingStatus.html("");
+    $chat_messages.append(
+      `<li class='single-message ${data.messageClass}'><span class='username ${data.usernameClass}'>${data.username}</span>${data.message}</li>`
+    );
+    $(".chat-window").scrollTop($(".chat-window")[0].scrollHeight);
+  });
+  // Display user joined
   socket.on("user joined", data => {
     if (data.username !== "") {
       $chat_messages.append(`<li class='log'>${data.username} joined</li>`);
     } else return false;
   });
+
+  // Display user left
   socket.on("user left", data => {
     if (data.username !== undefined) {
       $chat_messages.append(`<li class='log'>${data.username} left</li>`);
     } else return false;
+  });
+
+  // Key Events
+  $message_input.keydown(function() {
+    socket.emit("typing", username);
+  });
+  socket.on("typing", function(data) {
+    var typing = $typingStatus.html(`${data} is typing`);
+    typing.fadeIn();
+  });
+  $message_input.keyup(function() {
+    socket.emit("stop typing", username);
+  });
+  socket.on("stop typing", function(data) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      $typingStatus.fadeOut();
+    }, 1000);
+  });
+
+  // Welcome message for a new user
+  socket.on("new user", function(data) {
+    $chat_messages.append(
+      `<li class="welcome-message">Welcome to Simple Chat, ${data.username}</li>`
+    );
+  });
+
+  // Updating online users
+  socket.on("fetch users", function(data) {
+    let users = "";
+    for (i = 0; i < data.length; i++) {
+      users += `<li class="user">${data[i]}<i class="far fa-dot-circle"></i></li>`;
+    }
+    $users.html(users);
+  });
+  // Sending message with enter key
+  $message_input.keypress(function(e) {
+    if (e.which == 13 && !e.shiftKey) {
+      $(this)
+        .closest("form")
+        .submit();
+      e.preventDefault();
+    }
   });
 });
