@@ -380,7 +380,7 @@ main {
   .online-users ul .user i {
     right: 10px;
   }
-  .chat-wrapper {
+  .container {
     height: 100vh;
   }
   .chat-window {
