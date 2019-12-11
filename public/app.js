@@ -1,3 +1,6 @@
+$(window).bind("beforeunload", function() {
+  return "are you sure you want to leave?";
+});
 $(function() {
   var socket = io();
   var $message_form = $("#message-area");
@@ -13,9 +16,9 @@ $(function() {
   var min = 1;
   var max = 5;
   var random = Math.floor(Math.random() * (max - min)) + min;
-
   var messageClass;
   var usernameClass;
+
   switch (random) {
     case 1:
       messageClass = "message_color_1";
@@ -46,7 +49,11 @@ $(function() {
       $mainChat.fadeIn();
       socket.emit("new user", username);
       $message_input.focus();
-      $userForm.val("");
+      // Scroll to the bottom of chat
+      $(".chat-window").animate(
+        { scrollTop: $(".chat-window").prop("scrollHeight") },
+        1000
+      );
     } else return false;
   });
   // Message Submit
@@ -61,7 +68,6 @@ $(function() {
         usernameClass: usernameClass
       });
       $message_input.val("");
-      username.val("");
     } else {
       return false;
     }
@@ -70,10 +76,16 @@ $(function() {
   // Displaying the message
   socket.on("chat message", function(data) {
     $typingStatus.html("");
-    $chat_messages.append(
-      `<li class='single-message ${data.messageClass}'><span class='username ${data.usernameClass}'>${data.username}</span>${data.message}</li>`
-    );
-    $(".chat-window").scrollTop($(".chat-window")[0].scrollHeight);
+    if (data.length) {
+      for (let i = 0; i < data.length; i++) {
+        $chat_messages.append(`<div class="message">
+        <div class="username ${data[i].usernameClass}">${data[i].username}</div>
+        <div class="single-message ${data[i].messageClass}">${data[i].message}</div>
+        </div>`);
+
+        $(".chat-window").scrollTop($(".chat-window")[0].scrollHeight);
+      }
+    }
   });
   // Display user joined
   socket.on("user joined", data => {
@@ -130,5 +142,9 @@ $(function() {
         .submit();
       e.preventDefault();
     }
+  });
+
+  $("#toggle").click(function() {
+    $(".online-users").slideToggle("slow");
   });
 });
