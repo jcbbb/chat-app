@@ -11,9 +11,7 @@ const dbName = "simple-chat";
 
 var connectedUsers = [];
 var OnlineUsers = [];
-http.listen(port, () => {
-  console.log("listening at port %d", port);
-});
+http.listen(port);
 app.use(express.static(path.join(__dirname, "public")));
 
 mongo.connect(uri, function(err, client) {
@@ -21,7 +19,6 @@ mongo.connect(uri, function(err, client) {
   if (err) {
     throw err;
   }
-  console.log("MongoDB connected");
   io.on("connection", function(socket) {
     let messages = db.collection("messages");
     messages
@@ -52,12 +49,10 @@ mongo.connect(uri, function(err, client) {
       );
     });
     connectedUsers.push(socket);
-    console.log("Connected users:", connectedUsers.length);
     socket.on("disconnect", function(data) {
       OnlineUsers.splice(OnlineUsers.indexOf(socket), 1);
       updateOnlineUsers();
       connectedUsers.splice(OnlineUsers.indexOf(socket), 1);
-      console.log("Disconnected users:", connectedUsers.length);
       socket.broadcast.emit("user left", { username: socket.username });
     });
     socket.on("new user", function(data) {
