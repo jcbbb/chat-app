@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple Chat</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+  </head>
+  <body>
+    <div class="login-page">
+    <div class="overlay-container">
+      <img src="img/chatting.jpg" alt="" id="landing-img">
+      <div class="overlay"></div>
+    </div>  
+      <div class="user-login-area">
+        <h1>Simple Chat</h1>
+        <form id="user-login-form">
+          <input type="text" placeholder="username" required autofocus id="username" maxlength="14">
+          <input type="submit" value="Login" id="login-btn">
+        </form>
+      </div>
+    </div>
+      <main>
+    <div class="container">
+      <div class="online-users">
+        <h3>Online Users</h3>
+        <ul id="users">
+        </ul>
+      </div>
+      <div class="chat-wrapper">
+          <span id="toggle">&equiv;</span>
+        <div class="chat-window">
+            <ul id="chat-messages">
+            </ul>
+            <div class="typing-status"></div>
+          </div>
+          <form id="message-area">   
+            <input type="text" id="message-text" placeholder="Message" autofocus></input>
+            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i></button>
+          </form>
+      </div>
+    </div>
+  </main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="app.js"></script>
+  </body>
+</html>

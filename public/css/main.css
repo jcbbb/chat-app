@@ -1,0 +1,475 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8e44ad;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a851ce;
+}
+
+::-webkit-scrollbar-track {
+  background: #2c3e50;
+  border-radius: 5px;
+}
+
+main {
+  width: 100%;
+  margin: auto;
+  display: none;
+}
+
+.overlay-container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.53);
+  z-index: -1;
+}
+
+#landing-img {
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -2;
+}
+
+.user-login-area {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.user-login-area h1 {
+  color: #e6e6e6;
+}
+
+.user-login-area input[type="text"] {
+  padding: .8em;
+  width: 290px;
+  margin-top: 3em;
+  display: block;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: #1c2936;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.user-login-area input[type="text"]::-webkit-input-placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="text"]:-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="text"]::-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="text"]::placeholder {
+  color: #c9c9c9;
+}
+
+.user-login-area input[type="submit"] {
+  padding: 0.8em 36px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  background: #8e44ad;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  margin: 0.8em auto;
+}
+
+.user-login-area input[type="submit"]:hover {
+  background: #a851ce;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+.online-users {
+  -ms-flex-preferred-size: 320px;
+      flex-basis: 320px;
+  background: #2c3e50;
+  padding: 2em 1em;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.online-users h3 {
+  text-align: center;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.online-users ul {
+  list-style: none;
+  color: #fff;
+  margin-top: 2em;
+}
+
+.online-users ul .user {
+  font-weight: 600;
+  width: 100%;
+  background: #1c2936;
+  padding: 15px;
+  position: relative;
+  margin-top: 6px;
+  border-radius: 3px;
+}
+
+.online-users ul .user:not(:first) {
+  margin-top: 0;
+}
+
+.online-users ul .user i {
+  position: absolute;
+  right: 15px;
+  color: #2ecc71;
+  top: 50%;
+  -webkit-transform: translate(0px, -50%);
+          transform: translate(0px, -50%);
+}
+
+.online-users ul .user i:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #2ecc71;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  top: -3px;
+  -webkit-animation: pulse 1.5s linear infinite;
+          animation: pulse 1.5s linear infinite;
+}
+
+.log {
+  color: #a851ce;
+  font-size: 14px;
+  margin: 5px;
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 16px;
+  color: #f39c12;
+  font-weight: 500;
+  text-align: center;
+}
+
+.chat-wrapper {
+  background: #1f3246;
+  width: calc(100% - 320px);
+  position: relative;
+}
+
+.chat-wrapper #toggle {
+  font-size: 36px;
+  color: #cacaca;
+  position: absolute;
+  top: .1em;
+  right: 0.84em;
+  display: none;
+}
+
+.chat-window {
+  margin: 2em;
+  height: calc(100%  - 7.1em - 26px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chat-window .typing-status {
+  font-size: 13px;
+  font-style: italic;
+  color: #cfcfcf;
+  font-weight: 500;
+  display: block;
+  margin-top: 6px;
+}
+
+#chat-messages {
+  list-style: none;
+  color: #fff;
+}
+
+#chat-messages .message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 8px 0;
+}
+
+#chat-messages .message .username {
+  color: #f1f1f1;
+  padding: 10px;
+  border-radius: 4px 0 0 4px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+#chat-messages .message .single-message {
+  font-size: 15px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  color: #fff;
+  border-radius: 0 4px 4px 0px;
+}
+
+#message-area {
+  margin: 2em;
+  position: relative;
+}
+
+#message-area input[type="text"] {
+  width: 100%;
+  overflow: hidden;
+  padding: 0.8em 68px 0.8em 0.8em;
+  font-size: 15px;
+  outline: none;
+  color: #fff;
+  background: #2c3e50;
+  border: none;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+#message-area input[type="text"]::-webkit-input-placeholder {
+  color: #c9c9c9;
+}
+
+#message-area input[type="text"]:-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+#message-area input[type="text"]::-ms-input-placeholder {
+  color: #c9c9c9;
+}
+
+#message-area input[type="text"]::placeholder {
+  color: #c9c9c9;
+}
+
+#message-area .submit-btn {
+  color: #fff;
+  background: #8e44ad;
+  border: none;
+  outline: none;
+  padding: 13.2px 24px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 1em;
+  margin-left: -68px;
+  position: absolute;
+  top: -13.3px;
+  right: 0;
+}
+
+#message-area .submit-btn:hover {
+  background: #a851ce;
+}
+
+@media screen and (max-width: 976px) {
+  .online-users {
+    width: 250px;
+  }
+  .chat-wrapper {
+    width: calc(100% - 250px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .online-users {
+    position: absolute;
+    top: 0;
+    z-index: 555;
+    width: 300px;
+    display: none;
+  }
+  .chat-wrapper {
+    width: 100%;
+  }
+  .chat-wrapper #toggle {
+    display: block;
+  }
+  .chat-wrapper .chat-window::-webkit-scrollbar {
+    display: none;
+  }
+  #chat-messages .message .username {
+    font-size: 13px;
+  }
+  #chat-messages .message .single-message {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #message-area input[type="text"] {
+    padding: 0.6em 58px 0.6em 0.8em;
+    font-size: 14px;
+  }
+  #message-area .submit-btn {
+    padding: 9px 18px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .online-users {
+    width: 250px;
+  }
+  .online-users h3 {
+    font-size: 1.3em;
+  }
+  .online-users ul .user {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .online-users ul .user i {
+    right: 10px;
+  }
+  .container {
+    height: 100vh;
+  }
+  .chat-window {
+    margin: 1em;
+    height: calc(100vh - 5.2em);
+  }
+  #message-area {
+    margin: 0 1em;
+  }
+  #message-area input[type="text"] {
+    padding: 0.6em 50px 0.6em 0.6em;
+    font-size: 12px;
+  }
+  #message-area .submit-btn {
+    font-size: 12px;
+    padding: 6.8px 16px;
+    top: -11.8px;
+  }
+  #chat-messages .message .username {
+    font-size: 12px;
+    padding: 6px;
+  }
+  #chat-messages .message .single-message {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
+
+.message_color_1 {
+  background: #8e44ad;
+}
+
+.username_color_1 {
+  background: #2c3e50;
+}
+
+.message_color_2 {
+  background: #f39c12;
+}
+
+.username_color_2 {
+  background: #eb4d4b;
+}
+
+.message_color_3 {
+  background: #a55eea;
+}
+
+.username_color_3 {
+  background: #f7b731;
+}
+
+.message_color_4 {
+  background: #f0932b;
+}
+
+.username_color_4 {
+  background: #2d3436;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=main.css.map */
